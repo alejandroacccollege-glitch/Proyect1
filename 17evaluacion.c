@@ -26,14 +26,9 @@ void countMessages(Message *messaggeInserted, int N, char *userName, int *sent, 
  
     if ((strcmp(userName, messagePointer->sender) == 0) 
     && (messagePointer->status == SENT)){
-
-        for(int j = 0; j < messagePointer->destinationCount; j++){
-            if((strcmp(userName, messagePointer->sender) == 0) && (messagePointer->status == SENT)){
-                (*sent)++;        
-            }
-        }
+        (*sent)++;
     }// Validates if the user has a succesful message sent
-    if ((strcmp(userName, messagePointer->sender) != 0) && (messagePointer->status == DELIVERED)){
+    if ((strcmp(userName, messagePointer->sender) != 0) && (messagePointer->status == (DELIVERED))){
         for(int j = 0; j < messagePointer->destinationCount; j++){
             if ((strcmp(userName, *(messagePointer->destination + j)) == 0)){
                 (*recived)++;
@@ -103,7 +98,7 @@ void countVowels(char (*words)[30], int N, int *count) {
 int main(){
     //Reto 2
     Message listaMensajes[8] = {
-        {"Hola Josue, reunion manana", SENT, "ana", 1, {"josue"}},
+        {"Hola Josue, reunion manana", DELIVERED, "ana", 1, {"josue"}},
 
         {"Enterado, ahi estare", SENT, "josue", 1, {"ana"}},
 
