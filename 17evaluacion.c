@@ -32,8 +32,7 @@ void countMessages(Message *messaggeInserted, int N, char *userName, int *sent, 
                 (*sent)++;        
             }
         }
-    }//Validates if the user has a succesful message sent, 
-    //being invalid if the user sends a message for himself
+    }// Validates if the user has a succesful message sent
     if ((messagePointer->status == DELIVERED)){
         for(int j = 0; j < messagePointer->destinationCount; j++){
             if ((strcmp(userName, *(messagePointer->destination + j)) == 0)){
@@ -41,15 +40,15 @@ void countMessages(Message *messaggeInserted, int N, char *userName, int *sent, 
                 break;
             }
         }
-    }//Validates if the user has a succesful message recived
+    }// Validates if the user has a succesful message recived
 }
 }
 
-//Reto 5 (Funcion que se pasa de la función filterMessage)
+// Reto 5 (Funcion que se pasa de la función filterMessage)
 Boole isMessageFrom(Message *message, void *data) {
     char *sender = (char*) data;
     return strcmp(message->sender, sender) == 0;
-}//Looking for a sender in the 
+}// Looking for a sender in the given message
 
 //Reto 4 
 Message **filterMessage(Message **message, int N, FilterFunc filter, void *data, int *n){
@@ -57,18 +56,18 @@ Message **filterMessage(Message **message, int N, FilterFunc filter, void *data,
     for(int i = 0; i < N; i++){
         if (filter(*(message + i), data) == True){ 
             (*n)++;
-        }//Creates a new size of "n" if the there are a valid data
+        }// Creates a new size of "n" if the there are a match data
     }
 
-    Message **newArray = (Message**) malloc((*n)* sizeof(Message*));//este es el arreglo a retornar 
-    int helpIndex = 0; //este el indice que aumenta el bloque del arreglo a apuntadores , sin entrar al dato Message 
+    Message **newArray = (Message**) malloc((*n)* sizeof(Message*));
+    int helpIndex = 0; 
 
     for (int j = 0; j < N; j++){
         if (filter(*(message + j), data) == True){
             *(newArray + helpIndex) = *(message + j);
             helpIndex ++;
         }
-    }
+    }// Fill a new array with the requested data
     return newArray;    
 }
 
@@ -97,7 +96,8 @@ void countVowels(char (*words)[30], int N, int *count) {
 
             j++;
         }
-    }
+    }// Advances in each word adding 1 in the count
+    //depending the vowel
 }
 
 int main(){
@@ -118,7 +118,7 @@ int main(){
         {"Fallo en la red", FAILED, "ana", 1, {"josue"}},
 
         {"Nos vemos en la tarde", DELIVERED, "pedro", 1, {"josue"}}
-    };
+    };// An example of an array of messages kind Message
     int userSent = 0;
     int userRecived = 0;
     char *userTest = "josue";
@@ -126,6 +126,8 @@ int main(){
     countMessages(listaMensajes, 8, userTest, &userSent, &userRecived);
     printf("Mensajes enviados: %d \n", userSent);
     printf("Mensajes recibidos: %d \n", userRecived);
+    // Shows the recived and sended messages 
+
     
     //Reto 5
     Message message1={"Hola Josue, reunion manana", SENT, "juan", 1, {"juan"}};
@@ -136,13 +138,13 @@ int main(){
     Message message6={"Hola nila , ", FAILED, "ana", 1, {"josue"}};
     int filteredMessage = 0;
     Message *pointerArrayMessage[]={&message1, &message2, &message3, &message4, &message5, &message6};
-   
-    Message **skill5 = filterMessage(pointerArrayMessage, 6, isMessageFrom, "juan", &filteredMessage);
+    // An example used in the filterMessage function
+    Message **filterIsMessageForm = filterMessage(pointerArrayMessage, 6, isMessageFrom, "juan", &filteredMessage);
     for (int i = 0; i < filteredMessage; i++) {
-    printf("Texto: %s\nRemitente: %s\n", (*(skill5 + i))->text, (*(skill5 + i))->sender);
-    
+    printf("Texto: %s\nRemitente: %s\n", (*(filterIsMessageForm + i))->text, (*(filterIsMessageForm + i))->sender);
+    // Prints the data searched
     }
-    free(skill5);
+    free(filterIsMessageForm);
 
     //Reto 6
     char words[][30] = {"Apostadores", "Funciones", "Estructuras"};
@@ -154,6 +156,7 @@ int main(){
     printf("\nFrecuencia de vocales (A, E, I, O, U):\n");
     for (int k = 0; k < 5; k++) {
         printf("Vocal %c: %d\n", *(vowels + k), *(count + k));
-    }
+    }// First we use the function countVowels and then print 
+    //the the result 
     return 0;
 }
