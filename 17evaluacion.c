@@ -141,7 +141,6 @@ int main(){
     printf("Texto: %s\nRemitente: %s\n", (*(filterIsMessageForm + i))->text, (*(filterIsMessageForm + i))->sender);
     // Prints the data searched
     }
-    free(filterIsMessageForm);
 
     //Reto 6
     char words[][30] = {"Apostadores", "Funciones", "Estructuras"};
