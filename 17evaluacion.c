@@ -127,14 +127,16 @@ int main(){
     //Reto 5
     Message message1={"Hola Josue, reunion manana", SENT, "juan", 1, {"juan"}};
     Message message2={"Hola Jared, reunion manana", DELIVERED, "pepe", 2, {"josue", "mario"}};
-    Message message3={"Hola amor, Que tal?", FAILED, "juan", 3, {"josue", "luis", "pedro"}};
+    Message message3={"Hola amiguito, Que tal?", FAILED, "juan", 3, {"josue", "luis", "pedro"}};
     Message message4={"Hola jochis, reunion manana", SENT, "ashton", 1, {"juan"}};
     Message message5={"Hola ashton, estas reprobado", SENT, "angel", 1, {"josue"}};
-    Message message6={"Hola nila , ", FAILED, "ana", 1, {"josue"}};
+    Message message6={"Hola nila", FAILED, "ana", 1, {"josue"}};
     int filteredMessage = 0;
     Message *pointerArrayMessage[]={&message1, &message2, &message3, &message4, &message5, &message6};
     // An example used in the filterMessage function
     Message **filterIsMessageForm = filterMessage(pointerArrayMessage, 6, isMessageFrom, "juan", &filteredMessage);
+    printf("\n");
+    printf("Mensajes enviados por juan: ");
     for (int i = 0; i < filteredMessage; i++) {
     printf("Texto: %s\nRemitente: %s\n", (*(filterIsMessageForm + i))->text, (*(filterIsMessageForm + i))->sender);
     // Prints the data searched
