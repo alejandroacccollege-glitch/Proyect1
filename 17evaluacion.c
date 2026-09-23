@@ -132,7 +132,7 @@ int main(){
     //Reto 5
     Message message1={"Hola Josue, reunion manana", SENT, "juan", 1, {"juan"}};
     Message message2={"Hola Jared, reunion manana", DELIVERED, "pepe", 2, {"josue", "mario"}};
-    Message message3={"Hola amor, reunion manana", FAILED, "juan", 3, {"josue", "luis", "pedro"}};
+    Message message3={"Hola amor, ¿Que tal?", FAILED, "juan", 3, {"josue", "luis", "pedro"}};
     Message message4={"Hola jochis, reunion manana", SENT, "ashton", 1, {"juan"}};
     Message message5={"Hola ashton, estas reprobado", SENT, "angel", 1, {"josue"}};
     Message message6={"Hola nila , ", FAILED, "ana", 1, {"josue"}};
